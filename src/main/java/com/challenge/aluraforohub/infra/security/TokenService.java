@@ -3,6 +3,7 @@ package com.challenge.aluraforohub.infra.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.challenge.aluraforohub.domain.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,16 +19,30 @@ public class TokenService {
     private String secret;
 
     public String generarToken(Usuario usuario){
+        System.out.println("Creare el token para el usuario");
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Voll.med")
+                    .withIssuer("API Challenge.ForoHub")
                     .withSubject(usuario.getLogin())
                     .withExpiresAt(fechaExpiracion())
                     .sign(algoritmo);
         } catch (JWTCreationException exception){
             // Invalid Signing configuration / Couldn't convert Claims.
             throw new RuntimeException("Error al generar el token JWT", exception);
+        }
+    }
+
+    public String getSubject(String tokenJWT){
+        try {
+            var algoritmo = Algorithm.HMAC256(secret);
+            return JWT.require(algoritmo)
+                    .withIssuer("API Challenge.ForoHub")
+                    .build()
+                    .verify(tokenJWT)
+                    .getSubject();
+        } catch (JWTVerificationException exception) {
+            throw new RuntimeException("Token JWT inválido o expirado!");
         }
     }
 
