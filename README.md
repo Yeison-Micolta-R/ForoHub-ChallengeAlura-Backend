@@ -1,6 +1,8 @@
 # ForoHub-ChallengeAlura-Backend
 Proyecto backend desarrollado como parte del **Challenge de Alura Latam**. Esta API gestiona la publicación, actualización y administración de tópicos (temas de discusión) en un foro de desarrollo.
 
+<img width="500" height="500" alt="Badge-Spring" src="https://github.com/user-attachments/assets/75c2aa75-1692-4a93-98b8-0e87c2a9c2b9" />
+
 ## 🚀 Tecnologías utilizadas
 
 - Java 17
