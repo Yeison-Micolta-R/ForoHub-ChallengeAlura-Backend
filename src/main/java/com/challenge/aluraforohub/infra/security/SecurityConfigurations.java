@@ -13,8 +13,8 @@ public class SecurityConfigurations {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/topicos").permitAll() // Aquí habilitas acceso sin login
-                        .anyRequest().authenticated()
+                        //.requestMatchers("/topicos", "/topicos/**").permitAll() // Aquí habilitas acceso sin login
+                        .anyRequest().permitAll()//authenticated()
                 )
                 .build();
     }

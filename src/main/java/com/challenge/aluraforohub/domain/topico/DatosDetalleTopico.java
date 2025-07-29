@@ -1,25 +1,20 @@
 package com.challenge.aluraforohub.domain.topico;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
-import java.time.LocalDateTime;
-
-public record DatosListaTopico(
+public record DatosDetalleTopico(
         Long id,
         String titulo,
         String mensaje,
-        LocalDateTime fecha_creacion,
+        String fecha_creacion,
         Status status,
         String autor,
         String curso
 ) {
-    public DatosListaTopico(Topico topico) {
+    public DatosDetalleTopico(Topico topico) {
         this(
                 topico.getId(),
                 topico.getTitulo(),
                 topico.getMensaje(),
-                topico.getFechaCreacion(),
+                topico.getFechaCreacion().toString(),
                 topico.getStatus(),
                 topico.getAutor(),
                 topico.getCurso()
